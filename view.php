@@ -4,52 +4,52 @@
 $xml = simplexml_load_file("/home/lburlingham/Documents/xml_text_viewer/sms-20230406183539.xml");
 
 // Array to hold all files that are split in case of error loading XML file (too large) 
-$splitFiles = array();
+// $splitFiles = array();
 
 
-class SplitFileIntoMultipleFiles {
-	public $filename;
-	public $linesPerFile;
+// class SplitFileIntoMultipleFiles {
+// 	public $filename;
+// 	public $linesPerFile;
 
-	public function __construct($filename, $linesPerFile) {
-		$this->filename = $filename;
-	}
+// 	public function __construct($filename, $linesPerFile) {
+// 		$this->filename = $filename;
+// 	}
 
-	public function splitFile($filename, $linesPerFile) {
-		$this->filename = $filename;
-		$command = "split -l " . $linesPerFile . " " . " " . $filename . " " . $filename;
-		exec($command);
+// 	public function splitFile($filename, $linesPerFile) {
+// 		$this->filename = $filename;
+// 		$command = "split -l " . $linesPerFile . " " . " " . $filename . " " . $filename;
+// 		exec($command);
 
-		$range = range('a', 'z');
-		foreach ($range as $letter) {
-			foreach ($range as $secondletter) {
-				array_push($splitFiles, $filename . $letter . $secondletter);
-				echo $filename . $letter . $secondletter . "\n";
-			}
-		}
+// 		$range = range('a', 'z');
+// 		foreach ($range as $letter) {
+// 			foreach ($range as $secondletter) {
+// 				array_push($splitFiles, $filename . $letter . $secondletter);
+// 				echo $filename . $letter . $secondletter . "\n";
+// 			}
+// 		}
 
-		foreach ($splitFiles as $file) {
-			$xml = simplexml_load_file($file);
-			if ($xml === false) {
-				throw new Exception("Failed to load XML file from split file.");
-			}
-		}
+// 		foreach ($splitFiles as $file) {
+// 			$xml = simplexml_load_file($file);
+// 			if ($xml === false) {
+// 				throw new Exception("Failed to load XML file from split file.");
+// 			}
+// 		}
 
-	}
-}
+// 	}
+// }
 
 
 // Check if XML file was loaded successfully
-if ($xml === false) {
+// if ($xml === false) {
 
-	// Split the file into multiple files
-	// $split = new SplitFileIntoMultipleFiles();
-	// $split->splitFile("/home/lburlingham/Documents/xml_text_viewer/sms-20230406183539.xml", 1000);
-	$xml = simplexml_load_file("/home/lburlingham/Documents/xml_text_viewer/test.xml");
+// 	// Split the file into multiple files
+// 	// $split = new SplitFileIntoMultipleFiles();
+// 	// $split->splitFile("/home/lburlingham/Documents/xml_text_viewer/sms-20230406183539.xml", 1000);
+// 	$xml = simplexml_load_file("/home/lburlingham/Documents/xml_text_viewer/test.xml");
 
-    throw new Exception("Failed to load XML file. Trying to split the file into multiple files.");
+//     throw new Exception("Failed to load XML file. Trying to split the file into multiple files.");
 
-}
+// }
 class AddSMSMessage {
 
     public $contactName;
